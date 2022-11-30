@@ -33,3 +33,8 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+// 빌드 시 plain jar생성하지 않도록 설정하
+tasks.getByName<Jar>("jar") {
+    enabled = false
+}
