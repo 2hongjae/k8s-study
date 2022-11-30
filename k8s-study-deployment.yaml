@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-study-app
+spec:
+  selector:
+    matchLabels:
+      app: k8s-study
+  template:
+    metadata:
+      name: k8s-study-app-pod
+      labels:
+        app: k8s-study
+    spec:
+      containers:
+        - name: k8s-study-app-container
+          image: 2hongjae/k8s-study:latest
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080 # does not affect actual port
