@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: k8s-study-app
-  namespace: k8s-study
+  namespace: production
 spec:
   selector:
     matchLabels:
@@ -22,3 +22,16 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 8080 # does not affect actual port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-study-svc-nodeport
+  namespace: production
+spec:
+  selector:
+    app: k8s-study
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: NodePort
